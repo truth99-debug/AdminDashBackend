@@ -14,8 +14,6 @@ public class ImageData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private byte[] imageFile;
-
     @Column(name = "image_name")
     private String imageName;
 
