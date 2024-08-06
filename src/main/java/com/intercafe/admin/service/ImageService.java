@@ -63,7 +63,7 @@ public class ImageService {
     public void processImage(MultipartFile file) throws IOException {
         ImageData imageData = new ImageData();
 
-        imageData.setImageFile(file.getBytes());
+//        imageData.setImageFile(file.getBytes());
         imageRepository.save(imageData);
 
     }

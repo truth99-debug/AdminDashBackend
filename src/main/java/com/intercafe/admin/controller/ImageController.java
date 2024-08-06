@@ -10,20 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping(path = "api/v1/admin")
+@CrossOrigin(origins = "*")
 public class ImageController {
 
-    @Autowired
-    private ImageService imageService;
+    private final ImageService imageService;
+
+    public ImageController(ImageService imageService) {
+        this.imageService = imageService;
+    }
 
     @PostMapping("/storeImage")
     private void storeImage(@RequestParam("foodImages") MultipartFile... foodImages) throws IOException {
 
         String uploadDirectory = "src/main/resources/images/foodImages";
-        String fdImageString = "";
+        StringBuilder fdImageString = new StringBuilder();
 
         for (MultipartFile imageFile : foodImages) {
-            fdImageString += imageService.saveImageToStorage(uploadDirectory, imageFile) + ",";
+            fdImageString.append(imageService.saveImageToStorage(uploadDirectory, imageFile)).append(",");
         }
     }
 
